@@ -1,5 +1,4 @@
 os
 boto3
 botocore
-tempfile
 ffmpeg
