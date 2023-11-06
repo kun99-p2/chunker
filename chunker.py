@@ -21,6 +21,7 @@ def chunker(data):
     metadata = {
         'title': data['title'],
         'id': data['id'],
+        'user': data['user'],
         'time': data['time']
     }
     print(metadata)
@@ -50,11 +51,11 @@ def chunker(data):
                     response = s3.list_objects_v2(Bucket=bucket, Prefix="videos/"+data['user']+'/')
         except Exception as e:
             print("Error: ", e)
-        # for obj in response.get('Contents', []):
-        #     obj_key = s3.head_object(Bucket=bucket, Key=obj['Key'])['Metadata']
-        #     if obj_key['title'] == data['title'] and obj_key['id'] == data['id']:
-        #         s3.delete_object(Bucket=bucket, Key=obj['Key'])
-        #         break
+        for obj in response.get('Contents', []):
+            obj_key = s3.head_object(Bucket=bucket, Key=obj['Key'])['Metadata']
+            if obj_key['title'] == data['title'] and obj_key['id'] == data['id']:
+                s3.delete_object(Bucket=bucket, Key=obj['Key'])
+                break
         print("success")
     except Exception as e:
         print("error: ", e)
