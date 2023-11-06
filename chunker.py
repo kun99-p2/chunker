@@ -20,6 +20,7 @@ def chunker(data):
     print("IN CHUNKER")
     metadata = {
         'title': data['title'],
+        'desc': data['desc'],
         'id': data['id'],
         'user': data['user'],
         'time': data['time']
