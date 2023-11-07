@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 
 COPY chunker.py /app/
 
-CMD ["rq", "worker", "--url", "redis://redis_server:6379/0", "q"]
+CMD ["rq", "worker", "--url", "redis://rq-manager:6379/0", "q"]
