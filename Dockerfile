@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY chunker.py /app/
 
-CMD ["rq", "worker", "--url", "redis://$REDIS_HOST:$REDIS_PORT/0", "$QUEUE_NAME"]
+CMD ["rq", "worker", "--url", "redis://redis-service:6379/0", "q"]
